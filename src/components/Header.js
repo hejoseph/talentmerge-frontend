@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Header.css';
 
@@ -16,6 +17,7 @@ const Header = () => {
           {user && (
             <div className="header-actions">
               <span className="welcome-text">Welcome, {user.username}</span>
+              <Link to="/upload" className="btn">Upload Resume</Link>
               <button className="btn logout-btn" onClick={logout}>
                 Logout
               </button>

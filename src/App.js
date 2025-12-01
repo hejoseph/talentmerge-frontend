@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
+import ResumeUpload from './components/ResumeUpload';
 import './App.css';
 
 function PrivateRoute({ children }) {
@@ -25,6 +26,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Dashboard />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/upload" 
+                element={
+                  <PrivateRoute>
+                    <ResumeUpload />
                   </PrivateRoute>
                 } 
               />
