@@ -34,7 +34,7 @@ function ResumeUpload() {
     return (
         <div>
             <h2>Upload Resume</h2>
-            <input type="file" onChange={handleFileChange} />
+            <input type="file" onChange={handleFileChange} accept=".pdf,.docx" />
             <button onClick={handleUpload} disabled={!selectedFile || isLoading}>
                 {isLoading ? 'Uploading...' : 'Upload'}
             </button>
