@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import resumeService from '../services/resumeService';
+import './ResumeUpload.css';
+
 
 function ResumeUpload() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -38,82 +40,69 @@ function ResumeUpload() {
     };
 
     return (
-        <div>
-            <h2>Upload Resume</h2>
+        <div className="resume-uploader">
+          <h2>Upload Resume</h2>
+
+          <div className="file-upload">
             <input type="file" onChange={handleFileChange} accept=".pdf,.docx" />
             <button onClick={handleUpload} disabled={!selectedFile || isLoading}>
-                {isLoading ? 'Uploading...' : 'Upload'}
+              {isLoading ? 'Uploading...' : 'Upload'}
             </button>
-            {selectedFile && <p>Selected file: {selectedFile.name}</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            
-            {candidateProfile && (
-                <div style={{ marginTop: '20px', border: '1px solid #ccc', padding: '15px', borderRadius: '5px' }}>
-                    <h3>Extracted Candidate Profile:</h3>
-                    <div>
-                        <strong>Name:</strong> {candidateProfile.name || 'N/A'}
-                    </div>
-                    <div>
-                        <strong>Email:</strong> {candidateProfile.email || 'N/A'}
-                    </div>
-                    <div>
-                        <strong>Phone:</strong> {candidateProfile.phone || 'N/A'}
-                    </div>
-                    {candidateProfile.skills && (
-                        <div>
-                            <strong>Skills:</strong> {candidateProfile.skills}
-                        </div>
-                    )}
+          </div>
 
-                    {candidateProfile.workExperiences && candidateProfile.workExperiences.length > 0 && (
-                        <div style={{ marginTop: '15px' }}>
-                            <h4>Work Experience:</h4>
-                            {candidateProfile.workExperiences.map((exp, index) => (
-                                <div key={index} style={{ marginBottom: '10px', paddingLeft: '15px', borderLeft: '2px solid #eee' }}>
-                                    <strong>{exp.jobTitle}</strong> at {exp.company}
-                                    <br />
-                                    <small>
-                                        {new Date(exp.startDate).toLocaleDateString()} - {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}
-                                    </small>
-                                    <p style={{ margin: '5px 0' }}>{exp.description}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+          {selectedFile && <p className="selected-file">Selected file: {selectedFile.name}</p>}
+          {error && <p className="error-message">{error}</p>}
 
-                    {candidateProfile.educations && candidateProfile.educations.length > 0 && (
-                        <div style={{ marginTop: '15px' }}>
-                            <h4>Education:</h4>
-                            {candidateProfile.educations.map((edu, index) => (
-                                <div key={index} style={{ marginBottom: '10px', paddingLeft: '15px', borderLeft: '2px solid #eee' }}>
-                                    <strong>{edu.degree}</strong>
-                                    <br />
-                                    {edu.institution}
-                                    <br />
-                                    <small>Graduated: {new Date(edu.graduationDate).toLocaleDateString()}</small>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+          {candidateProfile && (
+            <div className="profile-card">
+              <h3>Extracted Candidate Profile:</h3>
 
-                    {/* Debug Section */}
-                    {candidateProfile.rawText && (
-                        <div style={{ marginTop: '20px' }}>
-                            <button onClick={toggleDebug}>
-                                {isDebugVisible ? 'Hide' : 'Show'} Raw Text
-                            </button>
-                            {isDebugVisible && (
-                                <details open style={{ marginTop: '10px' }}>
-                                    <summary>Debug: Raw Extracted Text</summary>
-                                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
-                                        {candidateProfile.rawText}
-                                    </pre>
-                                </details>
-                            )}
-                        </div>
-                    )}
+              <div className="profile-section">
+                <div><strong>Name:</strong> {candidateProfile.name || 'N/A'}</div>
+                <div><strong>Email:</strong> {candidateProfile.email || 'N/A'}</div>
+                <div><strong>Phone:</strong> {candidateProfile.phone || 'N/A'}</div>
+                {candidateProfile.skills && <div><strong>Skills:</strong> {candidateProfile.skills}</div>}
+              </div>
+
+              {candidateProfile.workExperiences?.length > 0 && (
+                <div className="profile-section">
+                  <h4>Work Experience:</h4>
+                  {candidateProfile.workExperiences.map((exp, idx) => (
+                    <div key={idx} className="experience-item">
+                      <strong>{exp.jobTitle}</strong> at {exp.company}
+                      <br />
+                      <small>{new Date(exp.startDate).toLocaleDateString()} - {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}</small>
+                      <p>{exp.description}</p>
+                    </div>
+                  ))}
                 </div>
-            )}
+              )}
+
+              {candidateProfile.educations?.length > 0 && (
+                <div className="profile-section">
+                  <h4>Education:</h4>
+                  {candidateProfile.educations.map((edu, idx) => (
+                    <div key={idx} className="education-item">
+                      <strong>{edu.degree}</strong>
+                      <br />
+                      {edu.institution}
+                      <br />
+                      <small>Graduated: {new Date(edu.graduationDate).toLocaleDateString()}</small>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {candidateProfile.rawText && (
+                <div className="raw-text-container">
+                  <button onClick={toggleDebug}>{isDebugVisible ? 'Hide' : 'Show'} Raw Text</button>
+                  {isDebugVisible && (
+                    <pre>{candidateProfile.rawText}</pre>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
     );
 }
