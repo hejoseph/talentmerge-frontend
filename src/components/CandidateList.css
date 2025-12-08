@@ -1,0 +1,451 @@
+/* Candidate List Styles */
+.candidate-list {
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Header */
+.list-header {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-info h2 {
+  margin: 0 0 4px 0;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stats {
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Controls */
+.list-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding: 10px 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 250px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.page-size-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.page-size-select {
+  padding: 6px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+/* Error Banner */
+.error-banner {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retry-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #c82333;
+}
+
+/* Table */
+.table-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.candidates-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.candidates-table thead {
+  background: #f1f3f4;
+}
+
+.candidates-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.candidates-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.candidates-table th.sortable:hover {
+  background: #e9ecef;
+}
+
+.candidates-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: top;
+}
+
+.candidates-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.candidates-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.candidates-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table Cells */
+.candidate-name strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.skills-cell {
+  max-width: 200px;
+}
+
+.skills-preview {
+  display: block;
+  line-height: 1.4;
+}
+
+.experience-count,
+.education-count {
+  color: #6c757d;
+  font-size: 13px;
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.no-data {
+  text-align: center;
+  color: #6c757d;
+  padding: 40px 12px;
+  font-style: italic;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.action-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.view-button:hover {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.edit-button:hover {
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.delete-button:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.pagination-button.active {
+  background: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+.pagination-button:disabled {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .candidates-table {
+    font-size: 13px;
+  }
+  
+  .candidates-table th,
+  .candidates-table td {
+    padding: 12px 8px;
+  }
+  
+  .skills-cell {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 992px) {
+  .list-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .list-controls {
+    justify-content: space-between;
+  }
+  
+  .search-input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .candidate-list {
+    padding: 10px;
+  }
+  
+  .list-header {
+    padding: 16px;
+  }
+  
+  .header-info h2 {
+    font-size: 20px;
+  }
+  
+  .list-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  /* Hide less important columns on mobile */
+  .candidates-table th:nth-child(3),
+  .candidates-table td:nth-child(3), /* Phone */
+  .candidates-table th:nth-child(5),
+  .candidates-table td:nth-child(5), /* Experience */
+  .candidates-table th:nth-child(6),
+  .candidates-table td:nth-child(6) /* Education */ {
+    display: none;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .pagination-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide skills column on very small screens */
+  .candidates-table th:nth-child(4),
+  .candidates-table td:nth-child(4) {
+    display: none;
+  }
+  
+  .candidates-table th,
+  .candidates-table td {
+    padding: 10px 6px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .action-button {
+    min-width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+
+/* Loading states */
+.table-loading {
+  position: relative;
+}
+
+.table-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+/* Empty states */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.empty-state p {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Animations */
+.candidates-table tbody tr {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

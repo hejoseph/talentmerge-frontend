@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Dashboard.css';
 
@@ -37,9 +38,11 @@ const Dashboard = () => {
         <div className="features-grid">
           <div className="feature-card card">
             <div className="feature-icon">👥</div>
-            <h3>Talent Management</h3>
-            <p>Manage and track talent across your organization with comprehensive profiles and analytics.</p>
-            <button className="btn feature-btn">Coming Soon</button>
+            <h3>Candidate Management</h3>
+            <p>Add, edit, and manage candidates manually or view candidates from resume uploads.</p>
+            <Link to="/candidates" className="btn feature-btn">
+              Manage Candidates
+            </Link>
           </div>
           
           <div className="feature-card card">

@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import ResumeUpload from './components/ResumeUpload';
+import CandidateManagement from './components/CandidateManagement';
 import './App.css';
 
 function PrivateRoute({ children }) {
@@ -30,10 +31,18 @@ function App() {
                 } 
               />
               <Route 
-                path="/upload" 
+                path="/resume-upload" 
                 element={
                   <PrivateRoute>
                     <ResumeUpload />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/candidates" 
+                element={
+                  <PrivateRoute>
+                    <CandidateManagement />
                   </PrivateRoute>
                 } 
               />
